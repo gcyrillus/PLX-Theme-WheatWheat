@@ -4,15 +4,15 @@
   
   :root {
   /* colors && bg */
-  --bgBody:				#efefef;
+  --bgBody:			#efefef;
   --bgBodyImg:  		url(../img/david-von-diemar-vVh9BUJIizQ-unsplash.jpg) 50% 0 / cover;
   --hxNav : 			#777;
-  --hxU : 				tomato ;
+  --hxU : 			tomato ;
   --MArkerColor: 		#E91E63 ;
-  --bgTop:				#ffc107;
-  --bdTop: 				#ffa000;
+  --bgTop:			#ffc107;
+  --bdTop: 			#ffa000;
   --bdthin: 			#ffb300;
-  --bgMain:				white;
+  --bgMain:			white;
   --bgAside:  			khaki;
   --bgFooter:			#5a5f73;
   --visited:  			orange;
@@ -60,7 +60,10 @@ meter {
     -webkit-appearance: revert;
     appearance: revert;
 }
-
+/* select */
+select {
+	max-width:100%;
+}
 /* reset default text opacity of input placeholder */
 ::placeholder {
     color: unset;
@@ -201,6 +204,19 @@ pre {
   aside li a {
 	float:left;
 	padding:0.2em;
+}
+.comment ~ form fieldset {
+    display: grid;
+    grid-template-columns: auto 1fr;
+	gap:0.25em;
+    max-width: 35em;
+    margin: auto;
+}
+.comment ~ form fieldset > label {
+	text-align:end;
+}
+.fullwidth {
+	grid-column:1/-1;
 }
 	@media screen and (min-width: 700px) {
 	  body:before,
@@ -450,6 +466,7 @@ pre {
 	}
 	#aside ul {
 	  margin: 0 0 2rem;
+      break-inside: avoid;
 	}
 	#aside ul, #aside a { 
    color:var(--asideColor)
