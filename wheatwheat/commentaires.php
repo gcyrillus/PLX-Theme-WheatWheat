@@ -41,7 +41,7 @@
 		<?php $plxShow->lang('WRITE_A_COMMENT') ?>
 	</h3>
 
-	<form id="form" action="<?php $plxShow->artUrl(); ?>#form" method="post">
+	<form id="form" class="com" action="<?php $plxShow->artUrl(); ?>#form" method="post">
 		<fieldset>
 					<label for="id_name"><?php $plxShow->lang('NAME') ?>* :</label>
 					<input id="id_name" name="name" type="text" size="20" value="<?php $plxShow->comGet('name',''); ?>" maxlength="30" required="required" />
