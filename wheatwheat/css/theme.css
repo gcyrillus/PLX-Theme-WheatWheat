@@ -315,6 +315,8 @@ pre {
 	  position: absolute;
 	  right: 0;
 	  transition: opacity 0.2s;
+	  background: inherit;
+          font-size: clamp(10px,3vw, 1rem);
 	}
 	#nav input:checked ~ ul {
 	  opacity: 1;
