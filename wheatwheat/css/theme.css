@@ -1,0 +1,518 @@
+  /*************************/  
+  /******** Variables ******/
+  /*************************/  
+  
+  :root {
+  /* colors && bg */
+  --bgBody:				#efefef;
+  --bgBodyImg:  		url(../img/david-von-diemar-vVh9BUJIizQ-unsplash.jpg) 50% 0 / cover;
+  --hxNav : 			#777;
+  --hxU : 				tomato ;
+  --MArkerColor: 		#E91E63 ;
+  --bgTop:				#ffc107;
+  --bdTop: 				#ffa000;
+  --bdthin: 			#ffb300;
+  --bgMain:				white;
+  --bgAside:  			khaki;
+  --bgFooter:			#5a5f73;
+  --visited:  			orange;
+  --asideColor: 		#018AF8;
+  --asideTxShdw:		#fff8;
+  
+}  
+ 
+  
+  
+  /*************************/  
+html,body {
+	scroll-behavior: smooth;
+	font-family:georgia,verdana,arial;
+}
+
+
+/* Reapply the pointer cursor for anchor tags */
+a, button {
+    cursor: revert;
+}
+
+/* For images to not be able to exceed their container */
+img {
+    max-width: 100%;
+}
+
+/* removes spacing between cells in tables */
+table {
+    border-collapse: collapse;
+}
+
+/* Safari - solving issue when using user-select:none on the <body> text input doesn't working */
+input, textarea {
+    -webkit-user-select: auto;
+}
+
+/* revert the 'white-space' property for textarea elements on Safari */
+textarea {
+    white-space: revert;
+}
+
+/* minimum style to allow to style meter element */
+meter {
+    -webkit-appearance: revert;
+    appearance: revert;
+}
+
+/* reset default text opacity of input placeholder */
+::placeholder {
+    color: unset;
+}
+
+/* fix the feature of 'hidden' attribute.
+   display:revert; revert to element instead of attribute */
+:where([hidden]) {
+    display: none;
+}
+
+/* revert for bug in Chromium browsers
+   - fix for the content editable attribute will work properly.
+   - webkit-user-select: auto; added for Safari in case of using user-select:none on wrapper element*/
+:where([contenteditable]:not([contenteditable="false"])) {
+    -moz-user-modify: read-write;
+    -webkit-user-modify: read-write;
+    overflow-wrap: break-word;
+    -webkit-line-break: after-white-space;
+    -webkit-user-select: auto;
+}
+
+/* apply back the draggable feature - exist only in Chromium and Safari */
+:where([draggable="true"]) {
+    -webkit-user-drag: element;
+}
+
+:where(:not(#header)> h1 ,h2, h3, h4, h5, h6, nav:not(.pagination)){
+	color:var(--hxNav);
+	font-weight:900;
+	text-transform:uppercase;
+	text-decoration:underline var(--hxU , #0000 );
+}
+#main blockquote::before {
+	content:'"';
+	font-size:2em;
+	position:absolute;
+	transform:translate(-2rem)
+}
+
+::marker, blockquote::before{
+  color: var(--MArkerColor);
+  font-weight: bolder;
+  font-size:1.2em;
+}   
+
+a {
+  color: #555;
+}
+a:visited {
+  text-decoration:none;
+  color:#018AF8
+}
+pre {
+ white-space: pre-wrap;
+ max-width:80%;
+ min-width:15em;
+}
+  
+	/* Layout */
+	body {
+	  display: grid;
+	  grid-template-areas: "nav" "header" "main" "footer";
+	  grid-template-rows: auto auto 1fr auto;
+	  grid-auto-flow: row dense;
+	  min-height: 100vh;
+	  margin: 0;
+	}
+	#nav {
+	  grid-area: nav;
+	  position: sticky;
+	  top: 0;
+	  z-index: 1;
+	}
+	#header {
+	  grid-area: header;
+	}
+	#main {
+	  grid-area: main;
+	}
+	#aside {
+		margin-inline-start:-1em;
+	}
+	#footer {
+	  grid-area: footer;
+	  grid-column: 1/-1;
+	  padding: 2rem;
+	}
+	@media screen and (min-width: 700px) {
+	  body {
+		grid-template-areas: ". header nav ." " . main main ." ". footer footer .";
+		grid-template-columns: auto minmax(200px, 500px) minmax(300px, 760px) auto;
+		grid-template-rows: auto 1fr auto;
+		gap: 3rem 0;
+	  }
+	}
+
+	/* individuel layouts */
+	#nav ul {
+	  grid-column: 1;
+	  list-style: none;
+	  display: flex;
+	  flex-wrap: wrap;
+	  align-items: center;
+	  justify-content: flex-end;
+	  gap: 0.15em 0.5em;
+	  padding: 0.25em;
+	  margin: 0;
+	  top: -100vh;
+	}
+	#nav label {
+	  grid-column: 2;
+	}
+	#header {
+	  display: grid;
+	  gap: 0.2rem;
+	  padding: 1rem 1rem 3rem;
+	  background: url(../img/PluXml-LogoJaune_104x82.png)2rem 50% no-repeat;
+	}
+	#header :is(h1, p) {
+	  margin: auto 1rem;
+		color:inherit;
+		text-transform:uppercase;
+	}
+	#header p {
+	  opacity: 0.8;
+	  margin-top: 0;
+	}
+	#aside {
+	  min-width: 250px;
+	  padding: 1rem;
+	  background:var(--bgAside);
+	  column-width: 160px;
+	}
+  aside li  {
+    clear:both;
+}
+  aside li a {
+	float:left;
+	padding:0.2em;
+}
+	@media screen and (min-width: 700px) {
+	  body:before,
+	  body:after {
+		content: "";
+		grid-row: 1;
+		background-color: var(--bgTop);
+	  }
+	  #nav {
+		display: grid;
+		grid-template-columns: 1fr 12rem;
+		grid-auto-flow: row dense;
+		padding-bottom: 3rem;
+	  }
+	  #main {
+		margin-top: -5.5rem;
+		display: flex;
+		gap: 1rem;
+			margin-inline: 1rem
+	  }
+	  #aside {
+		border-radius: 0 3px 3px 0;
+		margin-inline-start:0;
+	  }
+	  #footer {
+		padding-top: 4rem;
+		margin-top: -5.5rem;
+	  }
+	}
+
+	/* nav menu */
+	#nav {
+	  overflow-x: clip;
+	}
+	#nav label {
+	  position: relative;
+	  z-index: 1;
+	  cursor: pointer;
+	  white-space: nowrap;
+	}
+	#nav [type="checkbox"],
+	#top {
+	  position: absolute;
+	  margin-inline-start: -100vh;
+	}
+	#top {
+	  top: -100vh;
+	}
+	#nav label:before {
+	  content: "";
+	  display: inline-block;
+	  height: 2rem;
+	  width: 2rem;
+	  background: linear-gradient(
+			to bottom left,
+			#e91e6300 calc(50% - 0.17rem),
+			white calc(50% - 0.17rem) calc(50% + 0.17rem),
+			#e91e6300 calc(50% + 0.17rem)
+		  )
+		  center center no-repeat,
+		linear-gradient(
+			to bottom right,
+			#e91e63 calc(50% - 0.17rem),
+			white calc(50% - 0.17rem) calc(50% + 0.17rem),
+			#e91e63 calc(50% + 0.17rem)
+		  )
+		  center center no-repeat,
+		linear-gradient(
+			to bottom,
+			white 0 0.34rem,
+			transparent 0.34rem 0.83rem,
+			white 0.83rem 1.175rem,
+			transparent 1.17rem 1.66rem,
+			white 1.66rem
+		  )
+		  center center no-repeat #e91e63;
+	  background-clip: padding-box;
+	  background-size: 0 0, 0 0, 2rem 2rem;
+	  border-radius: 50%;
+	  vertical-align: middle;
+	  padding: 1rem;
+	  margin: 1rem;
+	  box-shadow: rgba(0, 0, 0, 0.0784314) 0px 0px 12px 0px,
+		rgba(0, 0, 0, 0.239216) 0px 12px 12px 0px;
+	  transition: 0.2s;
+	}
+	#nav input:checked + label {
+	  font-size: 0;
+	}
+	#nav input:checked + label:before {
+	  background-size: 2rem 2rem, 2rem 2rem, 0 0;
+	}
+	#nav input ~ ul,
+	#nav ul ul.sub-menu {
+	  opacity: 0;
+	  position: absolute;
+	  right: 0;
+	  transition: opacity 0.2s;
+	}
+	#nav input:checked ~ ul {
+	  opacity: 1;
+	  top: 1em;
+	  right: 1em;
+	  left: 6rem;
+	}
+	@media screen and (min-width: 700px) {
+	  #nav {
+		position: static;
+		z-index: auto;
+	  }
+	  #nav input:checked ~ ul {
+		position: relative;
+		inset: 0 0 0 0;
+		z-index: 1;
+	  }
+	}
+	/*sub-menu */
+	#nav ul li.menu {
+	  position: relative;
+	}
+  #nav ul li.menu:hover {
+    z-index: 1;
+  }
+	#nav ul li.menu span {
+	  cursor: pointer;
+	  text-decoration: underline;
+	}
+	#nav ul li.menu:hover ul.sub-menu {
+	  opacity: 1;
+	  top: 100%;
+	  right: 0;
+	  margin: 0;
+	}
+	#nav ul.sub-menu,
+	#nav ul.sub-menu li {
+	  margin: 0.2em;
+	  text-align: left;
+	  display: block;
+	}
+	#nav ul.sub-menu li {
+	  width: 15ch;
+	}
+/* fil d'ariane */
+.repertory.menu.breadcrumb {
+  display: flex;
+  list-style: none;
+  gap: 0.25em;
+}
+.repertory.menu.breadcrumb li:after {
+  content: '  /';
+  white-space: pre;
+}
+
+/* Pagination */
+.text-center {
+  text-align:center;
+}
+.pagination{
+  text-transform:uppercase;
+  border-bottom:dotted 1px var(--bgTop)
+}
+.pagination a {
+  display:inline-block;
+  text-decoration:none;
+  vertical-align:middle;
+  min-width:3em;
+  padding:0.15em;
+  margin :0.5em;
+  line-height:2rem;
+  background:var(--bgTop);
+  color:var(--asideColor);
+  border: solid 1px var(--bdthin);
+  border-radius:5px;
+  box-shadow: rgba(0, 0, 0, 0.0784314) 0px 0px 12px 0px,
+		rgba(0, 0, 0, 0.239216) 0px 12px 12px 0px;
+}
+
+/* fil */
+[title^="Fil"] {
+  color:tomato;
+  line-height:2;
+}
+
+	/* colors & backgrounds  texts alignment*/
+	body {
+	  background:var(--bgBodyImg)  var(--bgBody);
+	}
+	body::before,
+	body::after,
+	#header,
+	#nav {
+	  background-color: var(--bgTop);
+	  border-bottom: 1px solid var(--bdthin);
+	  color: white;
+	}
+	li:hover {
+	  background: rgba(255, 255, 255, 0.2);
+	}
+	#footer {
+	  background-color: var(--bgFooter);
+	  border-top-color: var(--bgFooter);
+	  color: #ffc107;
+	  text-align: center;
+	}
+	#footer .menu {
+	  display: flex;
+	  gap: 1em;
+	  list-style: none;
+	  justify-content: center;
+	  align-items: center;
+	}
+	#footer a {
+	  color: white;
+	}
+	#nav label {
+	  color: gray;
+	  font-weight: bold;
+	  text-transform: uppercase;
+	}
+	#nav ul li.menu:hover ul {
+	  background: var(--bgTop);
+	  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+	}
+	#main {
+	  position: relative;
+	  background: var(--bgMain);
+	  border-radius: 3px;
+	  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+	  padding-inline-start: 1rem;
+	}
+  #aside {
+  text-shadow:1px 1px 1px var(--asideTxShdw);
+}
+	@media screen and (min-width: 700px) {
+	  body::before,
+	  body::after,
+	  #header,
+	  #nav {
+		border-top: solid 2rem var(--bdTop);
+	  }
+	}
+
+	/* aside */
+	#aside h3 {
+	  margin: 0 1rem;
+    font-size:0.8em
+	}
+	#aside ul {
+	  margin: 0 0 2rem;
+	}
+	#aside ul, #aside a { 
+   color:var(--asideColor)
+  }
+  #aside a:visited { 
+    color:var(--visited)
+   }
+  @media print{
+	#nav,#footer, #aside {
+		display:none;
+	}
+	body {
+		all:revert;
+	}
+	#main {
+		margin:revert;
+		box-shadow:revert;
+		border-top:solid;
+		margin-top:2em;
+	}
+	#header {
+		all:revert
+	}
+	
+}
+
+  /* articles */
+section {
+	display:flex;
+	flex-direction:column;
+	flex-grow:1;
+}
+
+section >:last-child {
+	margin-top:auto;
+}
+article {
+  border-bottom:dotted 1px var(--bgTop);
+  padding-block:1em;
+}
+article h2 a {
+  color:inherit;
+  text-decoration:none;
+}
+article .art_thumbnail { 
+  width:30%;
+  float:left;
+  margin:1em;  border:solid 1px;
+  padding:3px;
+  background:var(--bgAside);
+  border-radius:3px;
+}
+
+time {opacity:0.5}
+article p.more {
+  float: inline-end ;
+  max-width:20em;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  overflow:hidden;
+  color:var(--hxU)
+}
+article p.more a {
+  color:var(--bdTop);
+}
+  
