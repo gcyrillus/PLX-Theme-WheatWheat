@@ -37,14 +37,16 @@
 		<script type="application/ld+json">{
 			"@context": "http://schema.org",
 			"@type": "WebSite",
-			"name": "NotOfficial Theme share Zone",
-			"url": "https://gcyrillus.alwaysdata.net/notOfficial/",
+			"name": "<?php $plxShow->mainTitle(); ?>",
+			"url": "<?php echo $plxShow->plxMotor->racine; ?>",
 			/*"sameAs": ["https://facebook.com/page", "https://plus.google.com/site", "https://twitter.com/name"],*/
-			"potentialAction": {
+			<?php if(isset($plxShow->plxMotor->plxPlugins->aPlugins['plxMySearch']) && $plxShow->plxMotor->plxPlugins->aPlugins['plxMySearch']->getParam('method') == 'get' && $plxShow->plxMotor->aConf['urlrewriting'])  {	?>
+"potentialAction": {
 					"@type": "SearchAction",
-					"target": "https://gcyrillus.alwaysdata.net/notOfficial/recherche?searchfield={searchfield}",
+					"target": "<?php echo $plxShow->plxMotor->racine .$plxShow->plxMotor->plxPlugins->aPlugins['plxMySearch']->getParam('url').'?searchfield={searchfield}' ; ?>",
 		            "query-input": "required name=searchfield"
 			}
+<?php } ?>
 		}</script>
 	</header>
 	<main id="main">
