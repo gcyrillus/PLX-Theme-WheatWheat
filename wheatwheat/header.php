@@ -34,18 +34,17 @@
 	<header id="header">
 		<h1><?php $plxShow->mainTitle(); ?></h1>
 		<p><?php $plxShow->subTitle(); ?></p>
-			<script type="application/ld+json">{
-				"@context": "http://schema.org",
-				"@type": "WebSite",
-				"name": "<?php $plxShow->mainTitle(); ?>",
-				"url": "<?php echo $plxShow->plxMotor->racine; ?>",
-				/*"sameAs": ["https://facebook.com/page", "https://plus.google.com/site", "https://twitter.com/name"],*/
-				<?php if(isset($plxShow->plxMotor->plxPlugins->aPlugins['plxMySearch']))  {	?>
-	"potentialAction": {
-						"@type": "SearchAction",
-						"target": "<?php echo $plxShow->plxMotor->racine .$plxShow->plxMotor->plxPlugins->aPlugins['plxMySearch']->getParam('url') ; ?>"
-				}
-	<?php } ?>
-			}</script>
+		<script type="application/ld+json">{
+			"@context": "http://schema.org",
+			"@type": "WebSite",
+			"name": "NotOfficial Theme share Zone",
+			"url": "https://gcyrillus.alwaysdata.net/notOfficial/",
+			/*"sameAs": ["https://facebook.com/page", "https://plus.google.com/site", "https://twitter.com/name"],*/
+			"potentialAction": {
+					"@type": "SearchAction",
+					"target": "https://gcyrillus.alwaysdata.net/notOfficial/recherche?searchfield={searchfield}",
+		            "query-input": "required name=searchfield"
+			}
+		}</script>
 	</header>
 	<main id="main">
