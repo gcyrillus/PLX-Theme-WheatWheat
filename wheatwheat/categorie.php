@@ -73,8 +73,8 @@
 				<?php if (trim($plxShow->plxMotor->plxRecord_arts->f('thumbnail'))): ?>
 				"image": "<?php echo $plxShow->plxMotor->urlRewrite(trim($plxShow->plxMotor->plxRecord_arts->f('thumbnail'))); ?>",
 				<?php endif; ?>
-				"datePublished": "<?php $plxShow->artDate('#num_year(4)-#num_month-#num_dayT#hour:#minute:00+#time'); ?>",
-				"dateModified": "<?php  echo plxDate::formatDate($plxShow->plxMotor->plxRecord_arts->f('date_update'), '#num_year(4)-#num_month-#num_dayT#hour:#minute:00+#time') ?>",
+				"datePublished": "<?php $plxShow->artDate('#num_year(4)-#num_month-#num_day'); ?>",
+				"dateModified": "<?php  echo plxDate::formatDate($plxShow->plxMotor->plxRecord_arts->f('date_update'), '#num_year(4)-#num_month-#num_day') ?>",
 				"author": {
 					"@type": "Person",
 					"name": "<?php $plxShow->artAuthor() ?>"
